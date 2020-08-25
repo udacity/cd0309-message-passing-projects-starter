@@ -1,0 +1,10 @@
+li {
+    list-style: none;
+    margin: 0 0 10px 0;
+}
+
+.person {
+    color: blue;
+    text-decoration: underline;
+    font-weight: bold;
+}
