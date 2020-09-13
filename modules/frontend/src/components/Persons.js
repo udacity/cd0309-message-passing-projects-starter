@@ -38,8 +38,9 @@ class Persons extends Component {
             {person.last_name}
           </div>
           <div>
-            Date of Birth:
-            {person.dob}
+            Company:
+            {person.company_name}
+            
           </div>
         </li>
       ))}

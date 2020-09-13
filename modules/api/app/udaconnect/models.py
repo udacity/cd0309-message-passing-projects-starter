@@ -18,7 +18,7 @@ class Person(db.Model):
     id = Column(Integer, primary_key=True)
     first_name = Column(String, nullable=False)
     last_name = Column(String, nullable=False)
-    dob = Column(Date, nullable=False)
+    company_name = Column(String, nullable=False)
 
 
 class Location(db.Model):

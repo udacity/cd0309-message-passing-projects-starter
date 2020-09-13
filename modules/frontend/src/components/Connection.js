@@ -21,7 +21,7 @@ class Connection extends Component {
     getConnections = (personId) => {
       if (personId) {
         // TODO: endpoint should be abstracted into a config variable
-        fetch(`http://localhost:30001/api/connections/persons/${personId}/connection?start_date=2020-01-01&end_date=2020-12-30&distance=5`)
+        fetch(`http://localhost:30001/api/persons/${personId}/connection?start_date=2020-01-01&end_date=2020-12-30&distance=5`)
           .then((response) => response.json())
           .then((connections) => this.setState({ connections: connections, personId: this.state.personId }));
       }

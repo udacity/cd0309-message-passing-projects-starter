@@ -117,7 +117,7 @@ class PersonService:
         new_person = Person()
         new_person.first_name = person["first_name"]
         new_person.last_name = person["last_name"]
-        new_person.dob = person["dob"]
+        new_person.company_name = person["company_name"]
 
         db.session.add(new_person)
         db.session.commit()
