@@ -34,13 +34,6 @@ spec:
       - image: isjustintime/udaconnect-api:latest
         name: udaconnect-api
         imagePullPolicy: Always
-        resources:
-          requests:
-            memory: "32Mi"
-            cpu: "256m"
-          limits:
-            memory: "64Mi"
-            cpu: "512m"
         env:
         - name: DB_USERNAME
           valueFrom:
