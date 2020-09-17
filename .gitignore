@@ -120,3 +120,6 @@ misc/
 .Rproj.user
 
 app/app-test.db
+
+.vagrant
+.ds_store

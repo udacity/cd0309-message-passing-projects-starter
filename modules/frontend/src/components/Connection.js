@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 class Connection extends Component {
   constructor(props) {
@@ -18,41 +18,48 @@ class Connection extends Component {
     }
   }
 
-    getConnections = (personId) => {
-      if (personId) {
-        // TODO: endpoint should be abstracted into a config variable
-        fetch(`http://localhost:30001/api/persons/${personId}/connection?start_date=2020-01-01&end_date=2020-12-30&distance=5`)
-          .then((response) => response.json())
-          .then((connections) => this.setState({ connections: connections, personId: this.state.personId }));
-      }
-    };
-
-    render() {
-      return (
-        <div>
-          <h3>Connections</h3>
-          <ul>
-            {this.state.connections.map((connection) => (
-              <div>
-                <li>
-                  <h4>
-                    {connection.person.first_name}
-                    {' '}
-                    {connection.person.last_name}
-                  </h4>
-                  (
-                  {connection.location.latitude}
-                  ,
-                  {connection.location.longitude}
-                  ) at
-                  {connection.location.creation_time}
-                </li>
-              </div>
-
-            ))}
-          </ul>
-        </div>
-      );
+  getConnections = (personId) => {
+    if (personId) {
+      // TODO: endpoint should be abstracted into a config variable
+      fetch(
+        `http://localhost:30001/api/persons/${personId}/connection?start_date=2020-01-01&end_date=2020-12-30&distance=5`
+      )
+        .then((response) => response.json())
+        .then((connections) =>
+          this.setState({
+            connections: connections,
+            personId: this.state.personId,
+          })
+        );
     }
+  };
+
+  render() {
+    return (
+      <div className="connectionBox">
+        <div className="connectionHeader">Connections</div>
+        <ul className="connectionList">
+          {this.state.connections.map((connection, index) => (
+            <li className="connectionListItem" key={index}>
+              <div className="contact">
+                {connection.person.first_name} {connection.person.last_name}
+              </div>
+              <div>
+                met at
+                <span className="latlng">
+                  {` `}
+                  {connection.location.latitude},{` `}
+                  {connection.location.longitude}
+                </span>
+                <br />
+                {`on `}
+                {new Date(connection.location.creation_time).toDateString()}
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
 }
 export default Connection;
