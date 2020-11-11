@@ -7,3 +7,5 @@ and this data will be stored in postgres database.
 
 Location service is the service that iteracts through a RESTFul API with the React Frontend.
 Person Microservice is other RESTFul API service responsible to keep user information.
+Location Microservice gets data from Person microservice when a request to find out possible coonnection is made.
+It is done by RESTFul API, however, It could be a cache in front of the service to retrieve quickly user information
