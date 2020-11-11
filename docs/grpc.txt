@@ -1,0 +1,14 @@
+The gRPC documentation for LocationEvent microservice.
+The request has a payload with userId, latitude and longitude.
+
+'''
+message LocationMessage {
+  int32 userId = 1;
+  int32 latitude = 2;
+  int32 longitude = 3;
+}
+
+service LocationService {
+  rpc Create(LocationMessage) returns (LocationMessage);
+}
+'''
