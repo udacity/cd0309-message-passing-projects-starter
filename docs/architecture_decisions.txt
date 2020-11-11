@@ -1,0 +1,9 @@
+LocationEvent service process user coordinates sent by mobiles devices. This communication is established using gRPC.
+This decision is based in the fact of efficiency and the requirements about lot of users sending data concurrently.
+It could be a RESTFul API once this service only sends data directly to Kafka and no high loading processing is done.
+
+Behind the LocationEvent has a Kafka cluster that receives this location data that will be consumed by LocationProcessor microservice
+and this data will be stored in postgres database.
+
+Location service is the service that iteracts through a RESTFul API with the React Frontend.
+Person Microservice is other RESTFul API service responsible to keep user information.
