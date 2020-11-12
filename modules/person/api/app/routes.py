@@ -1,5 +1,5 @@
 def register_routes(api, app, root="api"):
-    from app.udaconnect import register_routes as attach_udaconnect
+    from app.udaconnect import register_routes as attach_person_api
 
     # Add routes
-    attach_udaconnect(api, app)
+    attach_person_api(api=api, app=app)
