@@ -7,16 +7,29 @@ message Person {
   string company_name = 4;
 }
 
-message PersonList {
-  repeated Person persons = 1;
+message Location {
+  int32 id = 1;
+  int32 person_id = 2;
+  string coordinate = 3;
+  string creation_time = 4;
 }
 
-message PersonRequest {
-  optional int32 id = 1;
+message Connection {
+  Location location = 1;
+  Person person = 2;
 }
 
-service PersonService {
-  rpc Create(Person) returns (Person);
-  rpc Get(PersonRequest) returns (Person);
-  rpc GetAll(PersonRequest) returns (PersonList);
+message ConnectionList {
+  repeated Connection connections = 1;
+}
+
+message ConnectionRequest {
+  int32 person_id = 1;
+  string start_date = 2;
+  string end_date = 3;
+  int32 meters = 4;
+}
+
+service ConnectionService {
+  rpc FindContacts(ConnectionRequest) returns (ConnectionList);
 }
