@@ -40,7 +40,7 @@ class Connection extends Component {
         <div className="connectionHeader">Connections</div>
         <ul className="connectionList">
           {this.state.connections.filter((value, index, a) => a.findIndex(v => (
-              v.first_name === value.first_name && v.last_name === value.last_name
+              v.person.id === value.person.id
           )) === index).map((connection, index) => (
             <li className="connectionListItem" key={index}>
               <div className="contact">
