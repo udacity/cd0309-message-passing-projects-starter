@@ -1,0 +1,7 @@
+Monolithic app is refactored into different modules. The modules interact using different message passing techniques like REST API, Kafka and gRPC as shown in architecture diagram.
+
+Interaction between PersonService, ConnectionService and front-end is using REST API as the amount of information exchange is not huge and fits well with REST techniques.
+
+LocationProducer exposes gRPC interface as the amount of location data that comes in real time scenarios is huge and efficiency is required, which is provided by gRPC. 
+Also, the location data received is sent to LocationConsumer using Kafka, as streaming and asynchronous way of processing huge amount of information is efficient.
+
