@@ -75,6 +75,22 @@ Type `exit` to exit the virtual OS and you will find yourself back in your compu
 
 Afterwards, you can test that `kubectl` works by running a command like `kubectl describe services`. It should not return any errors.
 
+```bash
+$ vagrant ssh
+vagrant@master:~> curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+vagrant@master:~> chmod 700 get_helm.sh
+vagrant@master:~> ./get_helm.sh
+vagrant@master:~> helm repo add bitnami https://charts.bitnami.com/bitnami
+vagrant@master:~> exit
+```
+
+```bash
+master:/home/vagrant # helm repo add bitnami https://charts.bitnami.com/bitnami
+master:/home/vagrant # export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+master:/home/vagrant # helm install udaconnect-kafka bitnami/kafka
+```
+
+
 ### Steps
 1. `kubectl apply -f deployment/db-configmap.yaml` - Set up environment variables for the pods
 2. `kubectl apply -f deployment/db-secret.yaml` - Set up secrets for the pods
@@ -82,6 +98,11 @@ Afterwards, you can test that `kubectl` works by running a command like `kubectl
 4. `kubectl apply -f deployment/udaconnect-api.yaml` - Set up the service and deployment for the API
 5. `kubectl apply -f deployment/udaconnect-app.yaml` - Set up the service and deployment for the web app
 6. `sh scripts/run_db_command.sh <POD_NAME>` - Seed your database against the `postgres` pod. (`kubectl get pods` will give you the `POD_NAME`)
+7. `kubectl apply -f deployment/uda-connection.yaml` - Set up the connection service
+8. `kubectl apply -f deployment/uda-frontend.yaml` - Set up the frontend application
+9. `kubectl apply -f deployment/uda-person.yaml` - Set up person api service
+10. `kubectl apply -f modules/uda-location-producer/deployment/uda_location_producer.yaml`
+11. `kubectl apply -f modules/uda-location-consumer/deployment/uda_location_consumer.yaml`
 
 Manually applying each of the individual `yaml` files is cumbersome but going through each step provides some context on the content of the starter project. In practice, we would have reduced the number of steps by running the command against a directory to apply of the contents: `kubectl apply -f deployment/`.
 

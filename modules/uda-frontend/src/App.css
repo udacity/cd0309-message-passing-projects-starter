@@ -1,0 +1,99 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.App {
+  max-width: 800px;
+  margin: auto;
+}
+
+.App-logo {
+  flex-grow: 1;
+  margin: 20px 10px 10px;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+}
+
+.person,
+.contact {
+  color: #02b3e4;
+  text-decoration: none;
+  font: bold 1.5rem "Oswald", sans-serif;
+}
+.lists {
+  display: flex;
+  flex-wrap: wrap;
+  color: #2e3d49;
+}
+
+.peopleBox,
+.connectionBox {
+  border-radius: 10px;
+  flex-basis: 50%;
+  margin: 10px;
+  padding: 20px;
+  flex-grow: 1;
+}
+
+.peopleHeader,
+.connectionHeader {
+  font: bold 2rem "Oswald", sans-serif;
+  padding-left: 10px;
+}
+
+.personList,
+.connectionList {
+  padding: 0;
+  margin: auto;
+}
+
+.peopleBox {
+  border: 5px solid #02b3e4;
+}
+
+.connectionBox {
+  background: #02b3e4;
+}
+
+.personListItem,
+.connectionListItem,
+.selectedPerson {
+  list-style: none;
+  margin: 10px;
+  background: #dbe2e8;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.selectedPerson {
+  background: #fff;
+  border: 5px solid #02b3e4;
+}
+.connectionListItem {
+  background: #fff;
+}
+
+.latlng {
+  color: #02b3e4;
+  font: bold 1.25rem monospace;
+}
+
+@media only screen and (min-width: 600px) {
+  .lists {
+    flex-wrap: nowrap;
+  }
+  .peopleBox,
+  .connectionBox {
+    flex-basis: 50%;
+  }
+}

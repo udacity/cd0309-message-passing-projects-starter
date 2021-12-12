@@ -1,0 +1,104 @@
+{
+	"info": {
+		"_postman_id": "af0a7428-9bb3-4e8a-ad43-3d2f077fea07",
+		"name": "Udaconnect",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "check API Health status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:30001/health",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "30001",
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Persons",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:30001/api/persons",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "30001",
+					"path": [
+						"api",
+						"persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Person with ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:30001/api/persons/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "30001",
+					"path": [
+						"api",
+						"persons",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Person",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"30\",\"first_name\":\"samer\", \"last_name\":\"zmd\",\"company_name\":\"hungerstation\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:30001/api/persons",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "30001",
+					"path": [
+						"api",
+						"persons"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

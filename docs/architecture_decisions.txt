@@ -1,0 +1,5 @@
+
+uda-location-consumer will retrie and saving data from postgresql database.
+uda-location-producer services will be using kafka.
+uda-connection and uda-person service can use REST.
+uda-person and uda-location-producer will be use to populate data to the uda-frontend.

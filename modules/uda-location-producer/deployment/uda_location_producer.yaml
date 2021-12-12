@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: uda-location-producer
+  name: uda-location-producer
+spec:
+  ports:
+  - name: "5005"
+    port: 5005
+    targetPort: 5005
+    nodePort: 30005
+  selector:
+    service: uda-location-producer
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: uda-location-producer
+  name: uda-location-producer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: uda-location-producer
+  template:
+    metadata:
+      labels:
+        service: uda-location-producer
+    spec:
+      containers:
+      - image: samerzmd/uda-location-producer:latest
+        name: uda-location-producer
+        imagePullPolicy: Always
+      restartPolicy: Always

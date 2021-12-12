@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: uda-frontend
+  name: uda-frontend
+spec:
+  ports:
+    - name: "3000"
+      port: 3000
+      targetPort: 3000
+      nodePort: 30000
+  selector:
+    service: uda-frontend
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: uda-frontend
+  name: uda-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: uda-frontend
+  template:
+    metadata:
+      labels:
+        service: uda-frontend
+    spec:
+      containers:
+        - image: samerzmd/uda-frontend:latest
+          name: udaconnect-app
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "64m"
+            limits:
+              memory: "256Mi"
+              cpu: "256m"
+      restartPolicy: Always
