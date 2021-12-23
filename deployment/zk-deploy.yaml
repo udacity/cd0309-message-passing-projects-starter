@@ -1,0 +1,52 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zookeeper-deployment
+spec:
+  selector:
+    matchLabels:
+      app: zk-1
+  template:
+    metadata:
+      labels:
+        app: zk-1
+    spec:
+      containers:
+        - name: zookeeper1
+          image: digitalwonderland/zookeeper
+          ports:
+            - containerPort: 2181
+          env:
+            - name: ZOOKEEPER_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: zk-env
+                  key: ZOOKEEPER_ID
+            - name: ZOOKEEPER_SERVER_1
+              valueFrom:
+                configMapKeyRef:
+                  name: zk-env
+                  key: ZOOKEEPER_SERVER_1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: zookeeper1
+  labels:
+    app: zk-1
+spec:
+  ports:
+    - name: client
+      port: 2181
+      protocol: TCP
+    - name: follower
+      port: 2888
+      protocol: TCP
+    - name: leader
+      port: 3888
+      protocol: TCP
+  selector:
+    app: zk-1
+
+
