@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-broker-0
+spec:
+  selector:
+    matchLabels:
+      app: kafka
+      id: "0"
+  template:
+    metadata:
+      labels:
+        app: kafka
+        id: "0"
+    spec:
+      containers:
+        - name: kafka
+          image: wurstmeister/kafka
+          ports:
+            - containerPort: 9092
+          env:
+            - name: KAFKA_ADVERTISED_HOST_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: kafka-env
+                  key: KAFKA_ADVERTISED_HOST_NAME
+            - name: KAFKA_ADVERTISED_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: kafka-env
+                  key: KAFKA_ADVERTISED_PORT
+            - name: KAFKA_ZOOKEEPER_CONNECT
+              valueFrom:
+                configMapKeyRef:
+                  name: kafka-env
+                  key: KAFKA_ZOOKEEPER_CONNECT
+            - name: KAFKA_BROKER_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: kafka-env
+                  key: KAFKA_BROKER_ID
+            - name: KAFKA_CREATE_TOPICS
+              valueFrom:
+                configMapKeyRef:
+                  name: kafka-env
+                  key: KAFKA_CREATE_TOPICS
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka-svc
+  labels:
+    name: kafka
+spec:
+  ports:
+    - name: kafka-port
+      port: 9092
+      protocol: TCP
+  selector:
+    app: kafka
+    id: "0"
+
+
