@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+data:
+  ZOOKEEPER_ID: "1"
+  ZOOKEEPER_SERVER_1: "zookeeper1"
+metadata:
+  name: zk-env

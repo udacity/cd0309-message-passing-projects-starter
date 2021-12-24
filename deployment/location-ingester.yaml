@@ -4,7 +4,7 @@ metadata:
   labels:
     app: location-ingester
     tag: v1.0
-  name: location-ingester-latest
+  name: location-ingester-v1.0
 spec:
   replicas: 1
   selector:
@@ -33,3 +33,34 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "500m"
+        env:
+          - name: DB_USERNAME
+            valueFrom:
+              configMapKeyRef:
+                name: db-env
+                key: DB_USERNAME
+          - name: DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: db-secret
+                key: DB_PASSWORD
+          - name: DB_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: db-env
+                key: DB_HOST
+          - name: DB_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: db-env
+                key: DB_PORT
+          - name: DB_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: db-env
+                key: DB_NAME
+          - name: KAFKA_SERVER
+            valueFrom:
+              configMapKeyRef:
+                name: kafka-env
+                key: KAFKA_SERVER

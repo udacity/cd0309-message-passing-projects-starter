@@ -1,6 +1,11 @@
 apiVersion: v1
 kind: ConfigMap
 data:
-  KAFKA_URL: ""
+  KAFKA_ADVERTISED_PORT: "9092"
+  KAFKA_ADVERTISED_HOST_NAME: "kafka-svc"
+  KAFKA_BROKER_ID: "0"
+  KAFKA_CREATE_TOPICS: "location"
+  KAFKA_ZOOKEEPER_CONNECT: "zookeeper1:2181"
+  KAFKA_SERVER: "kafka-svc:9092"
 metadata:
   name: kafka-env
