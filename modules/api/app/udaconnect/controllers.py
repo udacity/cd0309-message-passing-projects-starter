@@ -36,6 +36,11 @@ class LocationResource(Resource):
         location: Location = LocationService.retrieve(location_id)
         return location
 
+    @responds(schema=LocationSchema)
+    def delete(self, location_id):
+        location: Location = LocationService.delete(location_id)
+        return location
+
 
 @api.route("/persons")
 class PersonsResource(Resource):

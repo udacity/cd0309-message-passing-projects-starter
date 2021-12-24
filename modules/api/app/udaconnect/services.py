@@ -110,6 +110,19 @@ class LocationService:
 
         return new_location
 
+    @staticmethod
+    def delete(location_id) -> Location:
+        location, coord_text = (
+            db.session.query(Location, Location.coordinate.ST_AsText())
+                .filter(Location.id == location_id)
+                .one()
+        )
+        try:
+            db.session.delete(location)
+            return location
+        except Exception:
+            raise Exception("Deletion for location_id %d failed." % location_id)
+
 
 class PersonService:
     @staticmethod
