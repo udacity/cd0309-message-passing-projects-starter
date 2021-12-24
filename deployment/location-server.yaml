@@ -29,7 +29,7 @@ spec:
       containers:
       - image: sumanbgl1/proj2-location-server:v1.0
         imagePullPolicy: IfNotPresent
-        name: location-server-v1.0
+        name: location-server
         ports:
         - containerPort: 5005
           protocol: TCP

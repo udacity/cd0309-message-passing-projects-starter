@@ -25,7 +25,7 @@ spec:
       containers:
       - image: sumanbgl1/proj2-location-ingester:v1.0
         imagePullPolicy: IfNotPresent
-        name: location-ingester-v1.0
+        name: location-ingester
         resources:
           requests:
             memory: "64Mi"
