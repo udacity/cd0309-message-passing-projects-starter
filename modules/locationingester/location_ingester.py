@@ -19,7 +19,7 @@ KAFKA_SERVER = os.environ['KAFKA_SERVER']
 # DB_NAME = 'DB_NAME'
 # KAFKA_SERVER = 'KAFKA_SERVER'
 
-consumer = KafkaConsumer(TOPIC_NAME,
+consumer = KafkaConsumer(TOPIC_NAME, bootstrap_servers=KAFKA_SERVER,
                          value_deserializer=lambda x: loads(x.decode('utf-8')))
 
 
