@@ -3,14 +3,14 @@ kind: Deployment
 metadata:
   labels:
     app: location-ingester
-    tag: v1.0
-  name: location-ingester-v1.0
+    tag: v2.0
+  name: location-ingester-v2.0
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: location-ingester
-      tag: v1.0
+      tag: v2.0
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -20,10 +20,10 @@ spec:
     metadata:
       labels:
         app: location-ingester
-        tag: v1.0
+        tag: v2.0
     spec:
       containers:
-      - image: sumanbgl1/proj2-location-ingester:v1.0
+      - image: sumanbgl1/proj2-location-ingester:v2.0
         imagePullPolicy: IfNotPresent
         name: location-ingester
         resources:
