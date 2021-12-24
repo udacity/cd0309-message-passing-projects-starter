@@ -1,3 +1,4 @@
 kafka-python
 GeoAlchemy2
 SQLAlchemy
+psycopg2-binary==2.8.5
