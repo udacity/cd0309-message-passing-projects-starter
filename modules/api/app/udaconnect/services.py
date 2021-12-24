@@ -119,6 +119,7 @@ class LocationService:
         )
         try:
             db.session.delete(location)
+            db.session.commit()
             return location
         except Exception:
             raise Exception("Deletion for location_id %d failed." % location_id)
