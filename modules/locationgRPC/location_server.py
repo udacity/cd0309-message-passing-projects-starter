@@ -5,9 +5,10 @@ import location_pb2
 import location_pb2_grpc
 from json import dumps
 from kafka import KafkaProducer
+import os
 
 TOPIC_NAME = 'location'
-KAFKA_SERVER = 'localhost:9092'
+KAFKA_SERVER = os.environ['KAFKA_SERVER']
 
 kafka_producer = KafkaProducer(bootstrap_servers=KAFKA_SERVER,
                                value_serializer=lambda v: dumps(v).encode('utf-8'))
