@@ -59,7 +59,7 @@ spec:
   ports:
   - port: 5005
     targetPort: 5005
-    nodePort: 6005
+    nodePort: 30100
   selector:
     app: location-server
     tag: v1.0
