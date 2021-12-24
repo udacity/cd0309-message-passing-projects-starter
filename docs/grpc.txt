@@ -1,0 +1,16 @@
+modules/locationgRPC/location.proto contains the gRPC message and API structure.
+
+LocationMessage is defined to contain person_id of type integer and latitue and longitude of type string.
+
+CreateLocation API that accepts LocationMessage is provided for the client's to report the location information.
+
+Execute the below commands to install dependencies and compile the code.
+pip install -r requirements.txt
+python -m grpc_tools.protoc -I./ --python_out=./ --grpc_python_out=./ location.proto
+
+location_server.py contains the server code and listens on port 5005.
+Run the command: python location_server.py
+
+location_client.py contains the client code. The code shared works for kuberenetes environment. Change 30100 to 5005 to
+run it in standalone mode.
+Run the command: python location_client.py

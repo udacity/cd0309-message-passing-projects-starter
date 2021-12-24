@@ -1,7 +1,18 @@
-Monolithic app is refactored into different modules. The modules interact using different message passing techniques like REST API, Kafka and gRPC as shown in architecture diagram.
+Monolithic application is refactored into following different modules.
+  - udaconnect-api: Provides REST API's for Person and Connection related operation. Also, implemented a new API to delete a location.
+  - LocationServer: gRPC Server to receive location data and adds that data to kafka
+  - LocationIngester: Consumes location messages from kafka and inserts them into location table.
 
-Interaction between PersonService, ConnectionService and front-end is using REST API as the amount of information exchange is not huge and fits well with REST techniques.
+The interaction between different modules is depicted in architecture diagram.
 
-LocationProducer exposes gRPC interface as the amount of location data that comes in real time scenarios is huge and efficiency is required, which is provided by gRPC. 
-Also, the location data received is sent to LocationConsumer using Kafka, as streaming and asynchronous way of processing huge amount of information is efficient.
+REST APIs are provided to retrieve Person and Connection information from the front-end. Since, these are mostly read operations from
+the database, the performance and efficiency provided by REST APIs is enough for this situation.
 
+Location information comes from client devices like mobile phones (which are normally memory constrained). Also, it comes in realtime
+and number of incoming requests will be extremely high. gRPC provides the required performance, fast response, scalability for this kind of
+scenario. Hence, LocationServer is developed as a gRPC server that accepts the location data.
+
+As the volume of location data will be extremely high, writing them to database is a time consuming operation. So, this operation
+is performed in background without blocking the LocationServer. Hence, writing to database is delegated to another component, LocationIngester.
+Kafka is used to exchange message between LocationServer and LocationIngester. Kafka, being a distributed messaging queue, provides the
+required fault-tolerance, scalability for this scenario.

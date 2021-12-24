@@ -1,0 +1,18 @@
+{
+	"info": {
+		"_postman_id": "9318be3f-0619-420c-adb5-ab2d2891c6b3",
+		"name": "udaconnect",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Delete Location",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:30001/api/locations/5"
+			},
+			"response": []
+		}
+	]
+}
