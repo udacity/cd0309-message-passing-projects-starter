@@ -55,7 +55,7 @@ metadata:
   name: connection-api
 spec:
   ports:
-  - port: 5001
+  - port: 5000
     targetPort: 5001
     nodePort: 30501
   selector:
