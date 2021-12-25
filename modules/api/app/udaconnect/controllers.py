@@ -79,7 +79,7 @@ class PersonConnectionResource(Resource):
         distance: Optional[int] = request.args.get("distance", 5)
 
         results = PersonService.find_contacts(
-            person_id=person_id,
+            person_id=int(person_id),
             start_date=start_date,
             end_date=end_date,
             meters=distance,
