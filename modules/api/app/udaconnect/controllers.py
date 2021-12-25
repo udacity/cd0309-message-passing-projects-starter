@@ -3,10 +3,9 @@ from datetime import datetime
 from app.udaconnect.models import Connection, Location, Person
 from app.udaconnect.schemas import (
     ConnectionSchema,
-    LocationSchema,
     PersonSchema,
 )
-from app.udaconnect.services import ConnectionService, LocationService, PersonService
+from app.udaconnect.services import PersonService
 from flask import request
 from flask_accepts import accepts, responds
 from flask_restx import Namespace, Resource
@@ -20,26 +19,26 @@ api = Namespace("UdaConnect", description="Connections via geolocation.")  # noq
 # TODO: This needs better exception handling
 
 
-@api.route("/locations")
-@api.route("/locations/<location_id>")
-@api.param("location_id", "Unique ID for a given Location", _in="query")
-class LocationResource(Resource):
-    @accepts(schema=LocationSchema)
-    @responds(schema=LocationSchema)
-    def post(self) -> Location:
-        request.get_json()
-        location: Location = LocationService.create(request.get_json())
-        return location
-
-    @responds(schema=LocationSchema)
-    def get(self, location_id) -> Location:
-        location: Location = LocationService.retrieve(location_id)
-        return location
-
-    @responds(schema=LocationSchema)
-    def delete(self, location_id):
-        location: Location = LocationService.delete(location_id)
-        return location
+# @api.route("/locations")
+# @api.route("/locations/<location_id>")
+# @api.param("location_id", "Unique ID for a given Location", _in="query")
+# class LocationResource(Resource):
+#     @accepts(schema=LocationSchema)
+#     @responds(schema=LocationSchema)
+#     def post(self) -> Location:
+#         request.get_json()
+#         location: Location = LocationService.create(request.get_json())
+#         return location
+#
+#     @responds(schema=LocationSchema)
+#     def get(self, location_id) -> Location:
+#         location: Location = LocationService.retrieve(location_id)
+#         return location
+#
+#     @responds(schema=LocationSchema)
+#     def delete(self, location_id):
+#         location: Location = LocationService.delete(location_id)
+#         return location
 
 
 @api.route("/persons")
@@ -70,7 +69,7 @@ class PersonResource(Resource):
 @api.param("start_date", "Lower bound of date range", _in="query")
 @api.param("end_date", "Upper bound of date range", _in="query")
 @api.param("distance", "Proximity to a given user in meters", _in="query")
-class ConnectionDataResource(Resource):
+class PersonConnectionResource(Resource):
     @responds(schema=ConnectionSchema, many=True)
     def get(self, person_id) -> ConnectionSchema:
         start_date: datetime = datetime.strptime(
@@ -79,7 +78,7 @@ class ConnectionDataResource(Resource):
         end_date: datetime = datetime.strptime(request.args["end_date"], DATE_FORMAT)
         distance: Optional[int] = request.args.get("distance", 5)
 
-        results = ConnectionService.find_contacts(
+        results = PersonService.find_contacts(
             person_id=person_id,
             start_date=start_date,
             end_date=end_date,
