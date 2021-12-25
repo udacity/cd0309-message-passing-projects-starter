@@ -1,0 +1,63 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: connection-api-svc
+  name: connection-api-svc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: connection-api-svc
+  template:
+    metadata:
+      labels:
+        service: connection-api-svc
+    spec:
+      containers:
+      - image: sumanbgl1/connection-api-svc:latest
+        name: connection-api
+        imagePullPolicy: Always
+        env:
+        - name: DB_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              name: db-env
+              key: DB_USERNAME
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: DB_PASSWORD
+        - name: DB_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: db-env
+              key: DB_NAME
+        - name: DB_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: db-env
+              key: DB_HOST
+        - name: DB_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: db-env
+              key: DB_PORT
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: connection-api-svc
+  name: udaconnect-api
+spec:
+  ports:
+  - port: 5001
+    targetPort: 5001
+    nodePort: 30501
+  selector:
+    service: connection-api-svc
+  type: NodePort
