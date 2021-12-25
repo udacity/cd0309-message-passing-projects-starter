@@ -154,7 +154,7 @@ class PersonService:
                       ) -> List[Connection]:
 
         connections_list = []
-        api_path = '/connections/%d/connection' % person_id
+        api_path = '/connections/%s/connection' % str(person_id)
         query_string = '?start_date=%s&end_date=%s&distance=%s' % (start_date, end_date, datetime)
         logger.info('api_path %s' % api_path)
         logger.info('query_string %s' % query_string)
