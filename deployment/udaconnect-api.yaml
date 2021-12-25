@@ -60,4 +60,9 @@ spec:
             configMapKeyRef:
               name: db-env
               key: DB_PORT
+        - name: CONNECTION_API_ENDPOINT
+          valueFrom:
+            configMapKeyRef:
+              name: udaconnect-api-env
+              key: CONNECTION_API_ENDPOINT
       restartPolicy: Always
