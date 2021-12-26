@@ -177,9 +177,9 @@ class PersonService:
             person.last_name = connection['person']['last_name']
             person.company_name = connection['person']['company_name']
 
-            connection = Connection()
-            connection.location = location
-            connection.person = person
+            connection = Connection(location, person)
+            # connection.location = location
+            # connection.person = person
 
             connections_list.append(connection)
 
