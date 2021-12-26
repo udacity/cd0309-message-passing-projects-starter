@@ -1,5 +1,6 @@
 Monolithic application is refactored into following different modules.
-  - udaconnect-api: Provides REST API's for Person and Connection related operation. Also, implemented a new API to delete a location.
+  - udaconnect-api: Provides REST API's for Person and Connection related operation.
+  - connection-api: Provides REST API for finding contacts for a given person id within specified date range and distance. Used by udaconnect-api.
   - LocationServer: gRPC Server to receive location data and adds that data to kafka
   - LocationIngester: Consumes location messages from kafka and inserts them into location table.
 
@@ -7,6 +8,8 @@ The interaction between different modules is depicted in architecture diagram.
 
 REST APIs are provided to retrieve Person and Connection information from the front-end. Since, these are mostly read operations from
 the database, the performance and efficiency provided by REST APIs is enough for this situation.
+udaconnect-api provides the facade for the frontend. udaconnect-api implements the PersonService. It invokes ConnectionService REST API to load
+connections for a specified person_id, date_range and distance.
 
 Location information comes from client devices like mobile phones (which are normally memory constrained). Also, it comes in realtime
 and number of incoming requests will be extremely high. gRPC provides the required performance, fast response, scalability for this kind of

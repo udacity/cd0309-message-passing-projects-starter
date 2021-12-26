@@ -1,33 +1,53 @@
   openapi: 3.0.0
   info:
-      title: Location API
-      description: Newly added delete location API
+      title: Person Locations API
+      description: Newly added API to get locations of a person
 
   paths:
-      /api/location:
-          delete:
+      /api/persons/{person_id}/connection:
+          get:
+            parameters:
+              - in : path
+                name: person_id
+                required: true
+              - in: query
+                name: start_date
+                required: false
+              - in: query
+                name: end_date
+                required: false
+              - in: query
+                name: distance
+                required: false
+            responses:
+              '200':
+                description:  Sucessfully returns all contacts for the given person_id.
+      /api/persons/{person_id}/locations:
+          get:
               parameters:
                   - in: path
-                    name: location_id
+                    name: person_id
                     required: true
                     schema:
                         type: integer
               responses:
                   '200':
-                    description: Sucessfully deleted location object.
+                    description: Sucessfully returns all locations for the given person_id.
                     content:
                       application/json:
                           schema:
+                            type: array
+                            items:
                               type: object
-                              properties:
-                                  id:
-                                    type: integer
-                                  person_id:
+                                properties:
+                                    id:
                                       type: integer
-                                  latitude:
-                                      type: string
-                                  longitude:
-                                      type: string
-                                  creation_time:
-                                      type: string
+                                    person_id:
+                                        type: integer
+                                    latitude:
+                                        type: string
+                                    longitude:
+                                        type: string
+                                    creation_time:
+                                        type: string
 

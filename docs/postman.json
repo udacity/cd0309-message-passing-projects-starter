@@ -6,11 +6,47 @@
 	},
 	"item": [
 		{
-			"name": "Delete Location",
+			"name": "get_contacts_for_person_id_5",
 			"request": {
-				"method": "DELETE",
+				"method": "GET",
 				"header": [],
-				"url": "http://localhost:30001/api/locations/5"
+				"url": {
+					"raw": "http://localhost:30001/api/persons/5/connection?start_date=2020-01-01&end_date=2020-12-30&distance=5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "30001",
+					"path": [
+						"api",
+						"persons",
+						"5",
+						"connection"
+					],
+					"query": [
+						{
+							"key": "start_date",
+							"value": "2020-01-01"
+						},
+						{
+							"key": "end_date",
+							"value": "2020-12-30"
+						},
+						{
+							"key": "distance",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_locations_for_person_id_5",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:30001/api/persons/5/locations"
 			},
 			"response": []
 		}
