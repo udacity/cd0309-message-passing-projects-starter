@@ -14,6 +14,10 @@ logger = logging.getLogger("udaconnect-api")
 
 class ConnectionService:
     @staticmethod
+    def retrieve_all_persons() -> List[Person]:
+        return db.session.query(Person).all()
+
+    @staticmethod
     def find_contacts(person_id: int, start_date: datetime, end_date: datetime, meters=5
     ) -> List[Connection]:
         """
@@ -30,7 +34,7 @@ class ConnectionService:
         ).all()
 
         # Cache all users in memory for quick lookup
-        person_map: Dict[str, Person] = {person.id: person for person in PersonService.retrieve_all()}
+        person_map: Dict[str, Person] = {person.id: person for person in ConnectionService.retrieve_all_persons()}
 
         # Prepare arguments for queries
         data = []
