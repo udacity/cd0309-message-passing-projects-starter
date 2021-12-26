@@ -151,7 +151,7 @@ class PersonService:
         return db.session.query(Person).all()
 
     @staticmethod
-    def find_contacts(person_id: int, start_date: datetime, end_date: datetime, meters=5
+    def find_contacts(person_id: int, start_date: str, end_date: str, meters=5
                       ) -> List[Connection]:
 
         connections_list = []
