@@ -171,6 +171,7 @@ class PersonService:
             location.person_id = connection['location']["person_id"]
             location.creation_time = connection['location']["creation_time"]
             location.coordinate = ST_Point(connection['location']["latitude"], connection['location']["longitude"])
+            location.set_wkt_with_coords(connection['location']["latitude"], connection['location']["longitude"])
             person = Person()
             person.id = connection['person']['id']
             person.first_name = connection['person']['first_name']
