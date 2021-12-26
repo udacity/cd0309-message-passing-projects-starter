@@ -4,6 +4,7 @@ from app.udaconnect.models import Connection, Location, Person
 from app.udaconnect.schemas import (
     ConnectionSchema,
     PersonSchema,
+    LocationSchema,
 )
 from app.udaconnect.services import PersonService
 from flask import request
@@ -60,3 +61,10 @@ class PersonConnectionResource(Resource):
             meters=distance,
         )
         return results
+
+@api.route("/persons/<person_id>/locations")
+class PersonLocationsResource(Resource):
+    @responds(schema=LocationSchema, many=True)
+    def get(self, person_id) -> List[Person]:
+        persons: List[Person] = PersonService.retrieve_locations(person_id)
+        return persons

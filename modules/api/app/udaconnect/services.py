@@ -68,3 +68,8 @@ class PersonService:
             connections_list.append(connection)
 
         return connections_list
+
+    @staticmethod
+    def retrieve_locations(person_id: int) -> List[Location]:
+        return db.session.query(Location).filter(Location.person_id == person_id).all()
+
