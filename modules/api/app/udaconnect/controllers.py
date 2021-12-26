@@ -62,6 +62,7 @@ class PersonConnectionResource(Resource):
         )
         return results
 
+
 @api.route("/persons/<person_id>/locations")
 class PersonLocationsResource(Resource):
     @responds(schema=LocationSchema, many=True)
