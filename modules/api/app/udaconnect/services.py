@@ -169,7 +169,8 @@ class PersonService:
             location = Location()
             location.id = connection['location']["id"]
             location.person_id = connection['location']["person_id"]
-            location.creation_time = connection['location']["creation_time"]
+            #location.creation_time = connection['location']["creation_time"]
+            location.creation_time = datetime.fromisoformat(connection['location']["creation_time"])
             location.coordinate = ST_Point(connection['location']["latitude"], connection['location']["longitude"])
             location.set_wkt_with_coords(connection['location']["latitude"], connection['location']["longitude"])
             person = Person()
