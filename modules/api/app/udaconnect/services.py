@@ -1,4 +1,5 @@
 import logging
+import os
 from datetime import datetime, timedelta
 from typing import Dict, List
 
@@ -154,8 +155,9 @@ class PersonService:
                       ) -> List[Connection]:
 
         connections_list = []
-        api_path = '/connections/%s/connection' % str(person_id)
-        query_string = '?start_date=%s&end_date=%s&distance=%s' % (start_date, end_date, datetime)
+        # conn_api_ep = os.environ['CONNECTION_API_ENDPOINT']
+        api_path = '/connections/%s/connection' % person_id
+        query_string = '?start_date=%s&end_date=%s&distance=%s' % (start_date, end_date, meters)
         logger.info('api_path %s' % api_path)
         logger.info('query_string %s' % query_string)
         conn_url = CONNECTION_API_ENDPOINT + api_path + query_string
