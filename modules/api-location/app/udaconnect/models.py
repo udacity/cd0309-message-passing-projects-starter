@@ -50,15 +50,9 @@ class Location(db.Model):
     @hybrid_property
     def longitude(self) -> str:
         coord_text = self.wkt_shape
-        return coord_text[coord_text.find(" ") + 1 : coord_text.find(")")]
+        return coord_text[coord_text.find(" ") + 1: coord_text.find(")")]
 
     @hybrid_property
     def latitude(self) -> str:
         coord_text = self.wkt_shape
-        return coord_text[coord_text.find("(") + 1 : coord_text.find(" ")]
-
-
-@dataclass
-class Connection:
-    location: Location
-    person: Person
+        return coord_text[coord_text.find("(") + 1: coord_text.find(" ")]
