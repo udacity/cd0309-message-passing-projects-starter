@@ -31,7 +31,7 @@ spec:
         service: udaconnect-app
     spec:
       containers:
-      - image: udacity/nd064-udaconnect-app:latest
+      - image: humamilisic/nd064-udaconnect-app:latest
         name: udaconnect-app
         imagePullPolicy: Always
         resources:
