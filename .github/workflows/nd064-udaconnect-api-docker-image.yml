@@ -46,8 +46,8 @@ jobs:
 
           push: true
           tags: |
-            ${{ secrets.DOCKER_HUB_USERNAME }}/nd064-udaconnect-api:${{ github.sha }}
-            ${{ secrets.DOCKER_HUB_USERNAME }}/nd064-udaconnect-api:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/nd064-udaconnect-api:${{ github.sha }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/nd064-udaconnect-api:latest
 
           # optional
           # Sets the target stage to build
