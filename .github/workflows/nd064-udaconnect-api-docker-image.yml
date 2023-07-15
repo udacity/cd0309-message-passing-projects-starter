@@ -27,8 +27,8 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: ./project
-          file: ./project/Dockerfile
+          context: ./modules/api
+          file: ./modules/api/Dockerfile
           platforms: linux/amd64
           push: true
           tags: humamilisic/nd064-udaconnect-api:latest humamilisic/nd064-udaconnect-api:$(date +%s)
