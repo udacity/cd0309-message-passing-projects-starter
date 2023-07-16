@@ -1,0 +1,57 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgis/postgis:12-2.5-alpine
+    networks:
+      udaconnect:
+        aliases:
+          - postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    environment:
+      DB_USERNAME: ct_admin
+      DB_NAME: geoconnections
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_PASSWORD: wowimsosecure
+      POSTGRES_USER: ct_admin
+      POSTGRES_PASSWORD: wowimsosecure
+      POSTGRES_DB: geoconnections
+  api:
+    build: api
+    networks:
+      - udaconnect
+    environment:
+      DB_USERNAME: ct_admin
+      DB_NAME: geoconnections
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_PASSWORD: wowimsosecure
+      POSTGRES_USER: ct_admin
+      POSTGRES_PASSWORD: wowimsosecure
+      POSTGRES_DB: geoconnections
+    ports:
+      - 30001:5000
+  frontend:
+    build: frontend
+    networks:
+      - udaconnect
+    environment:
+      DB_USERNAME: ct_admin
+      DB_NAME: geoconnections
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_PASSWORD: wowimsosecure
+      POSTGRES_USER: ct_admin
+      POSTGRES_PASSWORD: wowimsosecure
+      POSTGRES_DB: geoconnections
+    ports:
+      - 30000:3000
+volumes:
+  dbdata:
+
+networks:
+  udaconnect:
