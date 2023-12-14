@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: kafka
+  name: kafka
+spec:
+  ports:
+  - name: "9092"
+    port: 9092
+    targetPort: 9092
+    nodePort: 30005
+  selector:
+    service: kafka
+  type: NodePort
+  
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: kafka
+  name: kafka
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      service: kafka
+  template:
+    metadata:
+      labels:
+        service: kafka
+    spec:
+      containers:
+      - image: bitnami/kafka:latest
+        name: kafka
+        imagePullPolicy: Always
+        env:
+        - name: KAFKA_CFG_ZOOKEEPER_CONNECT
+          value: "zookeeper.default.svc.cluster.local:2181"
+        - name: KAFKA_CFG_ADVERTISED_LISTENERS
+          value: "PLAINTEXT://kafka.default.svc.cluster.local:9092"
+        - name: ALLOW_PLAINTEXT_LISTENER
+          value: "yes"
+        - name: "zookeeper.enabled"
+          value: "false"
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "64m"
+          limits:
+            memory: "256Mi"
+            cpu: "256m"
+      restartPolicy: Always
