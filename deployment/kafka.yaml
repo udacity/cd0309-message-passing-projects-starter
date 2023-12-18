@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-kraft
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-kraft
+  template:
+    metadata:
+      labels:
+        app: kafka-kraft
+    spec:
+      containers:
+      - name: kafka-kraft
+        image: confluentinc/confluent-local:7.4.0
+        ports:
+        - containerPort: 9092 # Adjust the port based on your Kafka configuration
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka-service
+spec:
+  selector:
+    app: kafka-kraft
+  ports:
+    - protocol: TCP
+      port: 9092 # Port to expose on the service
+      targetPort: 9092 # Port your application is listening on

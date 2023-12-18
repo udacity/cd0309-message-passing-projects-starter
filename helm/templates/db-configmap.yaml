@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-data:
-  DB_USERNAME: "ct_admin"
-  DB_NAME: "geoconnections"
-  DB_HOST: "postgres"
-  DB_PORT: "5432"
-metadata:
-  name: db-env
