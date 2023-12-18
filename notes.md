@@ -88,3 +88,22 @@ https://www.jaegertracing.io/
 
 https://grpc.io/
 
+## gRPC Python
+
+https://grpc.io/docs/languages/python/quickstart/
+
+```
+
+```
+
+# Postgres
+
+```shell
+
+kubectl apply -f deployment/db-configmap.yaml
+
+kubectl apply -f deployment/db-secret.yaml
+
+kubectl apply -f deployment/postgres.yaml
+
+```

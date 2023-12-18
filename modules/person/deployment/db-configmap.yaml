@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-data:
-  DB_USERNAME: "person"
-  DB_NAME: "person-db"
-  DB_HOST: "postgres-person-db"
-  DB_PORT: "5432"
-metadata:
-  name: db-env
