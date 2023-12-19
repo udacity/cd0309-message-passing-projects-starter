@@ -6,7 +6,7 @@ from app.udaconnect.schemas import (
     LocationSchema,
     PersonSchema,
 )
-from app.udaconnect.services import ConnectionService, LocationService, PersonService
+from app.udaconnect.services import LocationService
 from flask import request
 from flask_accepts import accepts, responds
 from flask_restx import Namespace, Resource
@@ -26,9 +26,9 @@ api = Namespace("UdaConnect", description="Connections via geolocation.")  # noq
 class LocationResource(Resource):
     @accepts(schema=LocationSchema)
     @responds(schema=LocationSchema)
-    def post(self) -> Location:
+    def post(self):
         request.get_json()
-        location: Location = LocationService.create(request.get_json())
+        location = LocationService.create(request.get_json())
         return location
 
     @responds(schema=LocationSchema)
