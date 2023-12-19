@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package udaconnect;
+
+message Person {
+  int32 id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string company_name = 4;
+}
+
+message ListPerson {
+  repeated Person persons = 1;
+}
+
+message RetrieveAllPersonsRequest {}
+
+service PersonService {
+  rpc RetrieveAllPersons(RetrieveAllPersonsRequest) returns (ListPerson);
+}

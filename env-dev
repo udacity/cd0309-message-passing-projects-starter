@@ -5,3 +5,6 @@ export DB_NAME="geoconnections"
 export DB_PASSWORD="wowimsosecure"
 export DB_HOST="localhost"
 export DB_PORT="5432"
+
+# grpc
+export GRPC_SERVER_ADDRESS="localhost:50051"

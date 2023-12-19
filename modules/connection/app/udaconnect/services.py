@@ -7,8 +7,13 @@ from app.udaconnect.models import Connection, Location, Person
 from app.udaconnect.schemas import ConnectionSchema, LocationSchema, PersonSchema
 from geoalchemy2.functions import ST_AsText, ST_Point
 from sqlalchemy.sql import text
+import os
+import grpc
+import persons_pb2
+import persons_pb2_grpc
 
-logging.basicConfig(level=logging.WARNING)
+
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("udaconnect-api")
 
 
@@ -30,7 +35,13 @@ class ConnectionService:
         ).all()
 
         # Cache all users in memory for quick lookup
-        person_map: Dict[str, Person] = {person.id: person for person in PersonService.retrieve_all()}
+        grpc_server_address = os.environ.get("GRPC_SERVER_ADDRESS")
+        channel = grpc.insecure_channel(grpc_server_address)
+        stub = persons_pb2_grpc.PersonServiceStub(channel=channel)
+        request = persons_pb2.RetrieveAllPersonsRequest()
+        list_persons: persons_pb2.ListPerson = stub.RetrieveAllPersons(request)
+        person_map: Dict[str, Person] = {person.id: person for person in list_persons.persons}
+        logging.info(person_map)
 
         # Prepare arguments for queries
         data = []
