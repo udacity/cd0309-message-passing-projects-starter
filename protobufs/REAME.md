@@ -28,7 +28,6 @@ curl -X POST \
   http://localhost:5000/api/locations \
   -H 'Content-Type: application/json' \
   -d '{
-  "id": 30,
   "latitude": "-122.290524",
   "longitude": "37.553441",
   "creation_time": "2020-08-18T10:37:06",
