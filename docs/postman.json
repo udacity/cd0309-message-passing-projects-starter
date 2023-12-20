@@ -1,0 +1,39 @@
+{
+    "info": {
+      "_postman_id": "unique_id",
+      "name": "Your Collection Name",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+      {
+        "name": "Create Location",
+        "request": {
+          "method": "POST",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"latitude\": \"-122.290524\",\n  \"longitude\": \"37.553441\",\n  \"creation_time\": \"2020-08-18T10:37:06\",\n  \"person_id\": 29\n}"
+          },
+          "url": {
+            "raw": "http://localhost:5000/api/locations",
+            "protocol": "http",
+            "host": [
+              "localhost"
+            ],
+            "port": "5000",
+            "path": [
+              "api",
+              "locations"
+            ]
+          }
+        },
+        "response": []
+      }
+    ]
+  }
+  
