@@ -23,15 +23,15 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      service: person-api
+      service: person-rpc
   template:
     metadata:
       labels:
-        service: person-api
+        service: person-rpc
     spec:
       containers:
       - image: kydq2022/nd064-c2-person-rpc:latest
-        name: person-api
+        name: person-rpc
         imagePullPolicy: Always
         env:
         - name: DB_USERNAME
