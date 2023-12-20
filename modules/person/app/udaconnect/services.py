@@ -13,7 +13,7 @@ import json
 from kafka import KafkaProducer
 
 logging.basicConfig(level=logging.WARNING)
-logger = logging.getLogger("udaconnect-api")
+logger = logging.getLogger("person-api")
 
 
 class PersonService:

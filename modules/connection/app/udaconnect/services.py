@@ -14,7 +14,7 @@ import persons_pb2_grpc
 
 
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger("udaconnect-api")
+logger = logging.getLogger("connection-api")
 
 
 class ConnectionService:
