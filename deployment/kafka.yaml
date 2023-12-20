@@ -16,7 +16,10 @@ spec:
       - name: kafka-kraft
         image: confluentinc/confluent-local:7.4.0
         ports:
-        - containerPort: 9092 # Adjust the port based on your Kafka configuration
+        - containerPort: 9092
+        env:
+        - name: KAFKA_ADVERTISED_LISTENERS
+          value: PLAINTEXT://kafka-kraft:29092,PLAINTEXT_HOST://kafka-service:9092
 
 ---
 apiVersion: v1

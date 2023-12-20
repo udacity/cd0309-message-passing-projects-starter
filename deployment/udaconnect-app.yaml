@@ -40,4 +40,9 @@ spec:
           limits:
             memory: "256Mi"
             cpu: "256m"
+        env:
+        - name: PERSON_API
+          value: "person-api:5000"
+        - name: CONNECTION_API
+          value: "person-api:5000"
       restartPolicy: Always

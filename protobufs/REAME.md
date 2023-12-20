@@ -25,6 +25,17 @@ flask run --host 0.0.0.0
 # location
 
 curl -X POST \
+  http://localhost:5001/api/locations \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "latitude": "-122.290524",
+  "longitude": "37.553441",
+  "creation_time": "2020-08-18T10:37:06",
+  "person_id": 29
+}'
+
+
+curl -X POST \
   http://localhost:5000/api/locations \
   -H 'Content-Type: application/json' \
   -d '{
@@ -37,7 +48,17 @@ curl -X POST \
 
 # person
 curl -X POST \
-  http://localhost:5000/api/persons \
+  http://localhost:5001/api/persons \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "first_name": "John",
+    "last_name": "Doe",
+    "company_name": "ABC Corp"
+  }'
+
+
+  curl -X POST \
+  http://localhost:5001/api/persons \
   -H 'Content-Type: application/json' \
   -d '{
     "first_name": "John",

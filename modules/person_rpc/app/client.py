@@ -8,7 +8,7 @@ import persons_pb2_grpc
 import os
 from typing import Dict, List
 
-grpc_server_address = os.environ.get("GRPC_SERVER_ADDRESS")
+grpc_server_address = os.environ["GRPC_SERVER_ADDRESS"]
 
 
 def run():

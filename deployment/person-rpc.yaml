@@ -30,7 +30,7 @@ spec:
         service: person-api
     spec:
       containers:
-      - image: udacity/nd064-c2-person-rpc:latest
+      - image: kydq2022/nd064-c2-person-rpc:latest
         name: person-api
         imagePullPolicy: Always
         env:

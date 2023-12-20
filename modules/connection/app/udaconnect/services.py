@@ -35,7 +35,7 @@ class ConnectionService:
         ).all()
 
         # Cache all users in memory for quick lookup
-        grpc_server_address = os.environ.get("GRPC_SERVER_ADDRESS")
+        grpc_server_address = os.environ["GRPC_SERVER_ADDRESS"]
         channel = grpc.insecure_channel(grpc_server_address)
         stub = persons_pb2_grpc.PersonServiceStub(channel=channel)
         request = persons_pb2.RetrieveAllPersonsRequest()

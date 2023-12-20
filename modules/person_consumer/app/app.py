@@ -70,7 +70,7 @@ class PersonService:
 
 
 # Kafka consumer configuration
-kafka_bootstrap_servers = os.environ.get('KAFKA_BOOTSTRAP_SERVERS', 'localhost:9092')
+kafka_bootstrap_servers = os.environ["KAFKA_BOOTSTRAP_SERVERS"]
 consumer_config = {
     'bootstrap_servers': kafka_bootstrap_servers,
     'group_id': 'person-consumer-group',
@@ -79,7 +79,7 @@ consumer_config = {
 }
 
 # Create Kafka consumer
-kafka_topic = os.environ.get('KAFKA_TOPIC', 'person-topic')
+kafka_topic = os.environ["KAFKA_TOPIC"]
 consumer = KafkaConsumer(kafka_topic, **consumer_config)
 
 try:

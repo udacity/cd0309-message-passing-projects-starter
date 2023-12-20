@@ -12,7 +12,7 @@ import json
 
 from kafka import KafkaProducer
 
-logging.basicConfig(level=logging.WARNING)
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("location-api")
 
 class LocationService:
@@ -35,7 +35,8 @@ class LocationService:
             logger.warning(f"Unexpected data format in payload: {validation_results}")
             raise Exception(f"Invalid payload: {validation_results}")
         
-        kafka_bootstrap_servers = os.environ.get('KAFKA_BOOTSTRAP_SERVERS', 'localhost:9092')
+        kafka_bootstrap_servers = os.environ["KAFKA_BOOTSTRAP_SERVERS"]
+        logging.info(kafka_bootstrap_servers)
         producer_config = {
             'bootstrap_servers': kafka_bootstrap_servers,
             'client_id': 'location-producer',

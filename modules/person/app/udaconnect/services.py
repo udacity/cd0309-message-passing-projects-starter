@@ -24,7 +24,7 @@ class PersonService:
         new_person.last_name = person["last_name"]
         new_person.company_name = person["company_name"]
 
-        kafka_bootstrap_servers = os.environ.get('KAFKA_BOOTSTRAP_SERVERS', 'localhost:9092')
+        kafka_bootstrap_servers = os.environ["KAFKA_BOOTSTRAP_SERVERS"]
         producer_config = {
             'bootstrap_servers': kafka_bootstrap_servers,
             'client_id': 'location-producer',

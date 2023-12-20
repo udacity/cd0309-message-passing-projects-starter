@@ -5,7 +5,7 @@ class Persons extends Component {
   constructor(props) {
     super(props);
     // TODO: endpoint should be abstracted into a config variable
-    this.endpoint_url = `${process.env.PERSON_API}/persons`;
+    this.endpoint_url = `http://${process.env.PERSON_API}/api/persons`;
     this.state = {
       persons: [],
       display: null,
