@@ -20,7 +20,10 @@ python3 -m grpc_tools.protoc -I ./protobufs --python_out=./modules/connection --
 flask run --host 0.0.0.0
 ```
 
-```
+```shell
+
+# location
+
 curl -X POST \
   http://localhost:5000/api/locations \
   -H 'Content-Type: application/json' \
@@ -32,8 +35,24 @@ curl -X POST \
   "person_id": 1
 }'
 
-```
+
+# person
+curl -X POST \
+  http://localhost:5000/api/persons \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "first_name": "John",
+    "last_name": "Doe",
+    "company_name": "ABC Corp"
+  }'
 
 ```
+
+```shell
+
+bin/kafka-topics.sh --create --topic person-topic --bootstrap-server localhost:9092
+
 bin/kafka-console-consumer.sh --topic location-topic --from-beginning --bootstrap-server localhost:9092
+
+bin/kafka-console-consumer.sh --topic person-topic --from-beginning --bootstrap-server localhost:9092
 ```
