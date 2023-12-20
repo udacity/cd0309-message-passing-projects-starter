@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kafka-env
+data:
+  KAFKA_BOOTSTRAP_SERVERS: "kafka-service:9092"
+  KAFKA_TOPIC_PERSON: "person-topic"
+  KAFKA_TOPIC_LOCATION: "location-topic"

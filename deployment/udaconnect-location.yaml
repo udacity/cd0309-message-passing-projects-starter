@@ -31,7 +31,7 @@ spec:
         service: location-api
     spec:
       containers:
-      - image: udacity/nd064-c2-location-api:latest
+      - image: kydq2022/nd064-c2-location-api:latest
         name: location-api
         imagePullPolicy: Always
         env:
@@ -60,4 +60,15 @@ spec:
             configMapKeyRef:
               name: db-env
               key: DB_PORT
+        # Kafka
+        - name: KAFKA_BOOTSTRAP_SERVERS
+          valueFrom:
+            configMapKeyRef:
+              name: kafka-env
+              key: KAFKA_BOOTSTRAP_SERVERS
+        - name: KAFKA_TOPIC
+          valueFrom:
+            configMapKeyRef:
+              name: kafka-env
+              key: KAFKA_TOPIC_LOCATION
       restartPolicy: Always
