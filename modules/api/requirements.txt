@@ -5,10 +5,12 @@ Flask==1.1.1
 flask-accepts==0.10.0
 flask-cors==3.0.8
 Flask-RESTful==0.3.7
-flask-restplus==0.12.1
+flask-restplus==0.13.0
 Flask-Script==2.0.6
 Flask-SQLAlchemy==2.4.0
 GeoAlchemy2==0.8.4
+grpcio==1.67.0
+grpcio-tools==1.67.0
 itsdangerous==1.1.0
 Jinja2==2.11.2
 jsonschema==3.0.2
