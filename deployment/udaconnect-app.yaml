@@ -39,6 +39,6 @@ spec:
             memory: "128Mi"
             cpu: "64m"
           limits:
-            memory: "256Mi"
-            cpu: "256m"
+            memory: "512Mi"
+            cpu: "512m"
       restartPolicy: Always
