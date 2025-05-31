@@ -15,7 +15,9 @@ Vagrant.configure("2") do |config|
   # boxes at https://vagrantcloud.com/search.
 
   config.vm.define "master" do |master|
-    master.vm.box = default_box
+    master.vm.box = "opensuse/Leap-15.6.x86_64"
+    master.vm.box_version = "15.6.13.356"
+    master.vm.boot_timeout = 900
     master.vm.hostname = "master"
     master.vm.network 'private_network', ip: "192.168.0.200",  virtualbox__intnet: true
     master.vm.network "forwarded_port", guest: 22, host: 2222, id: "ssh", disabled: true
