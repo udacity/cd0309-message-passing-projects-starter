@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from datetime import datetime
+from typing import ClassVar
 
 from app import db  # noqa
 from geoalchemy2 import Geometry
@@ -28,7 +29,7 @@ class Location(db.Model):
     person_id = Column(Integer, ForeignKey(Person.id), nullable=False)
     coordinate = Column(Geometry("POINT"), nullable=False)
     creation_time = Column(DateTime, nullable=False, default=datetime.utcnow)
-    _wkt_shape: str = None
+    _wkt_shape: ClassVar[str | None] = None
 
     @property
     def wkt_shape(self) -> str:
