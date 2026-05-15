@@ -1,0 +1,33 @@
+version: "3.9"
+services:
+  postgres: 
+    restart: always
+    container_name: postgres
+    image: postgis/postgis:12-2.5-alpine
+    ports:
+      - "5432:5432"
+    environment: 
+      POSTGRES_USER: "ct_admin"
+      POSTGRES_PASSWORD: "wowimsosecure"
+      POSTGRES_DB: "geoconnections"
+  udaconnect-api:
+    restart: always
+    container_name: udaconnect-api
+    build: modules/api
+    ports:
+      - "3001:5000"
+    environment:
+      DB_USERNAME: "ct_admin"
+      DB_PASSWORD: "wowimsosecure"
+      DB_NAME: "geoconnections"
+      DB_PORT: "5432"
+      DB_HOST: "postgres"
+  udaconnect-app:
+    restart: always
+    container_name: udaconnect-app
+    build: modules/frontend
+    ports:
+      - "3000:3000"
+    environment: 
+      REACT_APP_API_URL: "http://localhost:3001/api"
+

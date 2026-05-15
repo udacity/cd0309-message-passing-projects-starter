@@ -21,17 +21,17 @@ api = Namespace("UdaConnect", description="Connections via geolocation.")  # noq
 
 
 @api.route("/locations")
+class LocationsResource(Resource):
+    @accepts("Location", schema=LocationSchema, api=api)
+    @responds(schema=LocationSchema, api=api)
+    def post(self) -> Location:
+        location: Location = LocationService.create(api.payload)
+        return location
+
 @api.route("/locations/<location_id>")
 @api.param("location_id", "Unique ID for a given Location", _in="query")
 class LocationResource(Resource):
-    @accepts(schema=LocationSchema)
-    @responds(schema=LocationSchema)
-    def post(self) -> Location:
-        request.get_json()
-        location: Location = LocationService.create(request.get_json())
-        return location
-
-    @responds(schema=LocationSchema)
+    @responds(schema=LocationSchema, api=api)
     def get(self, location_id) -> Location:
         location: Location = LocationService.retrieve(location_id)
         return location
@@ -39,14 +39,13 @@ class LocationResource(Resource):
 
 @api.route("/persons")
 class PersonsResource(Resource):
-    @accepts(schema=PersonSchema)
-    @responds(schema=PersonSchema)
+    @accepts("Person", schema=PersonSchema, api=api)
+    @responds(schema=PersonSchema, api=api)
     def post(self) -> Person:
-        payload = request.get_json()
-        new_person: Person = PersonService.create(payload)
+        new_person: Person = PersonService.create(api.payload)
         return new_person
 
-    @responds(schema=PersonSchema, many=True)
+    @responds(schema=PersonSchema, api=api, many=True)
     def get(self) -> List[Person]:
         persons: List[Person] = PersonService.retrieve_all()
         return persons
@@ -55,7 +54,7 @@ class PersonsResource(Resource):
 @api.route("/persons/<person_id>")
 @api.param("person_id", "Unique ID for a given Person", _in="query")
 class PersonResource(Resource):
-    @responds(schema=PersonSchema)
+    @responds(schema=PersonSchema, api=api)
     def get(self, person_id) -> Person:
         person: Person = PersonService.retrieve(person_id)
         return person
@@ -67,10 +66,8 @@ class PersonResource(Resource):
 @api.param("distance", "Proximity to a given user in meters", _in="query")
 class ConnectionDataResource(Resource):
     @responds(schema=ConnectionSchema, many=True)
-    def get(self, person_id) -> ConnectionSchema:
-        start_date: datetime = datetime.strptime(
-            request.args["start_date"], DATE_FORMAT
-        )
+    def get(self, person_id) -> Connection:
+        start_date: datetime = datetime.strptime(request.args["start_date"], DATE_FORMAT)
         end_date: datetime = datetime.strptime(request.args["end_date"], DATE_FORMAT)
         distance: Optional[int] = request.args.get("distance", 5)
 

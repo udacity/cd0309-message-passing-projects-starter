@@ -123,3 +123,4 @@ app/app-test.db
 
 .vagrant
 .ds_store
+yarn.lock
